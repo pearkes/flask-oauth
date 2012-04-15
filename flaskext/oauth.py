@@ -311,7 +311,7 @@ class OAuthRemoteApp(object):
             # session.
             params = dict(self.request_token_params)
             params['redirect_uri'] = callback
-            params['client_id'] = self.consumer_key
+            params['client_key'] = self.consumer_key
             session[self.name + '_oauthredir'] = callback
             url = add_query(self.expand_url(self.authorize_url), params)
         return redirect(url)
@@ -346,7 +346,7 @@ class OAuthRemoteApp(object):
         """
         remote_args = {
             'code':             request.args.get('code'),
-            'client_id':        self.consumer_key,
+            'client_key':        self.consumer_key,
             'client_secret':    self.consumer_secret,
             'redirect_uri':     session.get(self.name + '_oauthredir')
         }
